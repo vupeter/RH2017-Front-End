@@ -32,13 +32,13 @@
     "typescript": "2.0.9"
   },
   "cordovaPlugins": [
-    "cordova-plugin-statusbar",
     "cordova-plugin-whitelist",
+    "cordova-plugin-statusbar",
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": [],
-  "description": "ionic: An Ionic project"
+  "description": "ionic-maps: An Ionic project"
 }

@@ -1,9 +1,11 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  <div #map id="map" style="height:100%;"></div>
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)" style="position:absolute;z-index:1000;width:85%;opacity:0.9;"></ion-searchbar>
+  
+  <ion-fab top right>
+    <button ion-fab style="margin-top:-3px;margin-left:-11px;"><ion-icon name="ios-navigate-outline"></ion-icon></button>
+  </ion-fab>
+
+  
+  <div #map id="map"></div>
 </ion-content>
