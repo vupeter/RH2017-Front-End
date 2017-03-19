@@ -3,6 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
+import { DateSelectPage} from '../pages/date-select/date-select';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 })
 export class MyApp {
   rootPage = HomePage;
+  dateSelectPage= DateSelectPage
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

@@ -3,9 +3,13 @@
   <ion-searchbar (ionInput)="getItems($event)" style="position:absolute;z-index:1000;width:85%;opacity:0.9;"></ion-searchbar>
   
   <ion-fab top right>
-    <button ion-fab style="margin-top:-3px;margin-left:-11px;"><ion-icon name="ios-navigate-outline"></ion-icon></button>
+    <button ion-fab style="margin-top:-3px;margin-left:-11px;" (click)="addCurrentLocation()"><ion-icon name="ios-navigate-outline"></ion-icon></button>
   </ion-fab>
 
   
   <div #map id="map"></div>
+
+  <ion-fab bottom right>
+    <button ion-fab style="margin-top:-3px;margin-left:-11px;" (click)="calendarPush()"><ion-icon name="ios-navigate-outline"></ion-icon></button>
+  </ion-fab>
 </ion-content>

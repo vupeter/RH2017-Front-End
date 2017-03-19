@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { LocationTracker } from '../../providers/location-tracker';
+import { DateSelectPage } from '../date-select/date-select';
  
 declare var google;
  
@@ -11,18 +13,40 @@ export class HomePage {
  
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  currentLocationActive: boolean;
+  userMarker: any;
  
-  constructor(public navCtrl: NavController) {
- 
+  constructor(public navCtrl: NavController, public locationTracker: LocationTracker) {
+    this.currentLocationActive = false;
   }
  
-  ionViewDidLoad(){
-    this.loadMap();
+ ionViewDidLoad(){
+    this.start().then( ()=>{
+        this.stop();
+        this.loadMap();
+    });
+    
   }
+
+  start(){
+      this.locationTracker.startTracking();
+      return new Promise(resolve=>{
+          setTimeout(function(){
+            resolve()
+          },1000);
+      })
+  }
+ 
+  stop(){
+    this.locationTracker.stopTracking();
+  }
+
  
   loadMap(){
- 
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    console.log("Coordinates")
+    console.log(this.locationTracker.lat)
+    console.log(this.locationTracker.lng)
+    let latLng = new google.maps.LatLng(this.locationTracker.lat, this.locationTracker.lng);
  
     let mapOptions = {
       center: latLng,
@@ -160,6 +184,21 @@ export class HomePage {
  
   }
 
+  addCurrentLocation(){
+      this.currentLocationActive = !this.currentLocationActive;
+      if(this.currentLocationActive){
+        var im = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
+        this.userMarker = new google.maps.Marker({
+            position: {lat:this.locationTracker.lat,lng:this.locationTracker.lng},
+            map: this.map,
+            icon: im
+        });
+      } else {
+          this.userMarker.setMap(null);
+      }
+      
+  }
+
   addMarker(){
  
     let marker = new google.maps.Marker({
@@ -185,4 +224,9 @@ export class HomePage {
     });
   
   }
+
+  calendarPush(){
+     this.navCtrl.push(DateSelectPage);
+  }
 }
+ 
