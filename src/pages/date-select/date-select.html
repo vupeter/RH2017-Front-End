@@ -6,7 +6,16 @@
 -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/2.4.4/flatpickr.min.css">
-  
+
 <ion-content padding>
- <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6><button ion-button block color="secondary" outline><ion-datetime *ngIf="click1" displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="start"></ion-datetime><span on-mouseover="over1()" *ngIf="!click1">Start Date</span></button></ion-col>
+      <ion-col col-6><button ion-button block color="danger" outline><ion-datetime *ngIf="click2" displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY" [(ngModel)]="end"></ion-datetime><span on-mouseover="over2()" *ngIf="!click2">End Date</span></button></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <button ion-button color="{{color}}" full>Next</button>
+</ion-footer>

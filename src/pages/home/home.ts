@@ -2,6 +2,9 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LocationTracker } from '../../providers/location-tracker';
 import { DateSelectPage } from '../date-select/date-select';
+
+import { Http }          from '@angular/http';
+import 'rxjs/add/operator/map';
  
 declare var google;
  
@@ -15,15 +18,28 @@ export class HomePage {
   map: any;
   currentLocationActive: boolean;
   userMarker: any;
+  marks: any;
+  locations: any;
  
-  constructor(public navCtrl: NavController, public locationTracker: LocationTracker) {
+  constructor(public navCtrl: NavController, public locationTracker: LocationTracker,public http: Http) {
     this.currentLocationActive = false;
+    this.marks = [];
+    /*
+    this.http.get('https://cryndex.io/api/ru/location/all').map(res=>res.json()).subscribe(body=>{
+        for(let location in body.body){
+            this.http.get('https//maps.googleapis.com/maps/api/geocode/json?address=${location.address}&key=AIzaSyDaS3Vc0TUNmoyP8iObmU0BkbB9t_Wt4bs').map(res=>res.json()).subscribe(body2=>{
+                this.addMarker(body.results[0].geometry.location)
+            })
+        }
+    });
+    */
   }
  
  ionViewDidLoad(){
     this.start().then( ()=>{
         this.stop();
         this.loadMap();
+        //this.markMap();
     });
     
   }
@@ -181,7 +197,7 @@ export class HomePage {
     }
  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
- 
+    
   }
 
   addCurrentLocation(){
@@ -199,15 +215,56 @@ export class HomePage {
       
   }
 
-  addMarker(){
- 
+  /*
+
+  markMap(){
+      console.log('test')
+      this.http.get('')
+               .map(res => res.json()).subscribe(response => {
+                   console.log('tes7987t');
+                   let body = response.data;
+                   for(let location of body){
+                       console.log('count')
+                    this.http.get(``).map(res => res.json()).subscribe(response => {
+                            let body = response.data;
+                            this.addMarker(body.results[0].geometry.location);
+                        })
+                   }
+               })
+
+               
+  }
+
+   /*
+    markMap() {
+        console.log('test')
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'https://cryndex.io/api/ru/location/all', false); // false for synchronous request
+        xmlHttp.send(null);
+        let body = JSON.parse(xmlHttp.responseText).data;
+        for (let location of body) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", 'https//maps.googleapis.com/maps/api/geocode/json?address=${location.address}&key=AIzaSyDaS3Vc0TUNmoyP8iObmU0BkbB9t_Wt4bs', false); // false for synchronous request
+            xmlHttp.send(null);
+            let body2 = JSON.parse(xmlHttp.responseText).data;
+                this.addMarker(body2.results[0].geometry.location);
+        }
+
+
+    }
+    */
+
+  addMarker(coordinate){
+    console.log('mark');
     let marker = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
+      position: coordinate
     });
+
+    this.marks.push(marker);
   
-    let content = "<h4>Information!kkhlkjhlkjhlkjhlkjhlkjhlkjhlkjhlkjhlkjhlkjhlkjhlkj</h4>";          
+    let content = "<h4>New owner</h4>";          
   
     this.addInfoWindow(marker, content);
   

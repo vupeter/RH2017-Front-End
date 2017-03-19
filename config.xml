@@ -5,13 +5,14 @@
   <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
   <content src="index.html"/>
   <access origin="*"/>
-  <allow-navigation href="http://ionic.local/*"/>
+  <allow-navigation href="http://*/*" />
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
+  
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
@@ -36,14 +37,4 @@
   <plugin name="cordova-plugin-statusbar" spec="2.2.1"/>
   <plugin name="cordova-plugin-device" spec="1.1.4"/>
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
-  <DatePicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePicker"
-        android:layout_gravity="center_horizontal|top"
-        android:headerBackground="?attr/colorPrimary"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        />
 </widget>
