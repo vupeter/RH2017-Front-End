@@ -6,10 +6,51 @@
     <button ion-fab style="margin-top:-3px;margin-left:-11px;" (click)="addCurrentLocation()"><ion-icon name="ios-navigate-outline"></ion-icon></button>
   </ion-fab>
 
+<div padding class="info" *ngIf="profile">
+  <button ion-button color="light" large clear icon-only class="close" (click)="closeProfile()">
+    <ion-icon name='close' is-active="false"></ion-icon>
+  </button>
+
+  <div text-center class="center">
+    <button ion-button round class="button topbuttons" icon-only>
+      <ion-icon name='chatbubbles' is-active="false"></ion-icon>
+    </button>
+
+    <img class="image topbuttons" src={{avatar}}/>
+
+
+    <button ion-button round class="button topbuttons" icon-only>
+      <ion-icon name='call' is-active="false"></ion-icon>
+    </button>
+  </div>
+
+  <h5 class="text" text-center>{{name}}</h5>
+
+  <p class="star" text-center>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star-outline"></ion-icon>
+  </p>
+
+  <p class="text">{{description}}</p>
+
+  <p class="subtext" padding>
+    {{address}}
+    <br>
+    {{time}}
+    <br>
+    Price per day: ${{price}}
+    </p>
+  <button ion-button round class="button book" large>Book Now</button>
+</div>
   
   <div #map id="map"></div>
 
   <ion-fab bottom right>
     <button ion-fab style="margin-top:-3px;margin-left:-11px;" (click)="calendarPush()"><ion-icon name="ios-navigate-outline"></ion-icon></button>
   </ion-fab>
+
 </ion-content>
+

@@ -4,12 +4,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LocationTracker } from '../providers/location-tracker';
 import { DateSelectPage } from '../pages/date-select/date-select';
+import { TimeSelectPage } from '../pages/time-select/time-select';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    DateSelectPage
+    DateSelectPage,
+    TimeSelectPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -18,7 +20,8 @@ import { DateSelectPage } from '../pages/date-select/date-select';
   entryComponents: [
     MyApp,
     HomePage,
-    DateSelectPage
+    DateSelectPage,
+    TimeSelectPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},LocationTracker]
 })
